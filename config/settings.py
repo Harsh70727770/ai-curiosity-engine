@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -87,14 +89,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'curiosity_engine_db', # The database name you created in pgAdmin
-        'USER': 'postgres',            # Your PostgreSQL username
-        'PASSWORD': 'Harsh@0031',   # Replace with your actual password
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        # This tells Django: Use the cloud URL if it exists, otherwise use local SQLite
+        default=os.environ.get('postgresql://curiosity_db_rchx_user:BN0qNvYNN1xmKTpLAQ68NMQNOdf5mrqC@dpg-d6fmmjh5pdvs73djkjug-a/curiosity_db_rchx', f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
+        conn_max_age=600
+    )
 }
 
 # Neo4j Graph Database Configuration

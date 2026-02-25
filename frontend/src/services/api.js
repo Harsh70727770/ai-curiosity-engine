@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create a custom axios instance
 const api = axios.create({
-    baseURL: 'http://127.0.0.1:8000/api/',
+    baseURL: 'https://ai-curiosity-engine.onrender.com/api/',
 });
 
 // Intercept every outgoing request and attach the token
