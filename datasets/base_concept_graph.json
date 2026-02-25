@@ -1,0 +1,12 @@
+{
+    "domain": "Artificial Intelligence",
+    "concepts": [
+        {"name": "calculus", "requires": []},
+        {"name": "linear algebra", "requires": []},
+        {"name": "probability", "requires": ["calculus"]},
+        {"name": "statistics", "requires": ["probability"]},
+        {"name": "python programming", "requires": []},
+        {"name": "data preprocessing", "requires": ["python programming", "statistics"]},
+        {"name": "machine learning", "requires": ["linear algebra", "data preprocessing"]}
+    ]
+}

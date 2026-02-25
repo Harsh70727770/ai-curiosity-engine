@@ -1,0 +1,166 @@
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Override Vite's default root container */
+#root {
+  max-width: 100% !important;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f9;
+  color: #2c3e50;
+  line-height: 1.6;
+}
+
+/* Navigation Bar */
+.navbar {
+  background-color: #0f172a;
+  color: #ffffff;
+  padding: 1rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Navigation Links Container */
+.nav-links {
+  display: flex;
+  gap: 25px; /* Adds perfect spacing between the words */
+  align-items: center;
+}
+
+/* Standard Links (Home, About, Contact) */
+.nav-links span {
+  color: #cbd5e1; /* Light grey text */
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+/* Make them turn white when you hover over them */
+.nav-links span:hover {
+  color: #38bdf8!important; 
+}
+
+/* Special styling just for the Student Portal */
+.nav-links .portal-btn {
+  color: #ffffff!important;
+  font-weight: 600;
+}
+
+/* Main Layout */
+.main-container {
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 0 20px;
+  min-height: 80vh;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #1e293b;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+}
+
+/* Card Components */
+.app-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+  margin-bottom: 2.5rem;
+  border: 1px solid #f1f5f9;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 2rem;
+  background-color: #0f172a;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+/* --- Responsive Grid System --- */
+
+/* Dashboard layout using CSS Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.concept-box {
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Learning Path Form layout */
+.search-form {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 0; /* Prevents input from blowing out the container */
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+}
+
+.search-button {
+  padding: 12px 24px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #0f172a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+/* Force Mobile Stacking */
+@media (max-width: 600px) {
+  .search-form {
+    flex-direction: column;
+  }
+  .search-button {
+    width: 100%;
+  }
+}
