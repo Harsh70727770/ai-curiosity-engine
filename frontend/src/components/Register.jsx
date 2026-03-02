@@ -38,7 +38,7 @@ export default function Register({ navigateTo }) {
 
         try {
             // Send the new user data to Django
-            await axios.post('http://127.0.0.1:8000/api/users/register/', {
+            const response = await axios.post('https://ai-curiosity-engine.onrender.com/api/users/register/', {
                 email: email,
                 password: password
             });

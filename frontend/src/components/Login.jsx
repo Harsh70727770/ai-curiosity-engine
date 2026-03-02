@@ -15,7 +15,7 @@ export default function Login({ navigateTo }) {
         try {
             // Send the request to Django's SimpleJWT endpoint
             // Note: SimpleJWT expects the field to be called "username" by default
-            await axios.post('https://ai-curiosity-engine.onrender.com/api/users/register/', {
+            const response = await axios.post('https://ai-curiosity-engine.onrender.com/api/users/login/', {
                 username: email, 
                 password: password
             });

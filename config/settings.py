@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # This tells Django: Use the cloud URL if it exists, otherwise use local SQLite
-        default=os.environ.get('postgresql://curiosity_db_rchx_user:BN0qNvYNN1xmKTpLAQ68NMQNOdf5mrqC@dpg-d6fmmjh5pdvs73djkjug-a/curiosity_db_rchx', f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
+        default=os.environ.get('DATABASE_URL', f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
         conn_max_age=600
     )
 }
@@ -165,10 +165,7 @@ SIMPLE_JWT = {
 
 # --- CORS CONFIGURATION ---
 # Allow requests from your React development server
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-]
+CORS_ALLOWED_ALL_ORIGINS = True
 
 # If you want to send credentials like authorization headers/cookies
 CORS_ALLOW_CREDENTIALS = True
