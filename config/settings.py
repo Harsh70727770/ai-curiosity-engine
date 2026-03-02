@@ -25,9 +25,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-w)k8^5sfeoad=6-x#(cs=9^13s7m5a3_x)&910nhkgdo%hg*^c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+# Explicitly allow your Render URL and localhost
+ALLOWED_HOSTS = [
+    'ai-curiosity-engine.onrender.com',
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -163,9 +168,15 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-# --- CORS CONFIGURATION ---
+# --- CORS & CSRF CONFIGURATION ---
 # Allow requests from your React development server
-CORS_ALLOWED_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "https://ai-curiosity-engine.onrender.com",
+]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://ai-curiosity-engine.onrender.com",
+]
 # If you want to send credentials like authorization headers/cookies
 CORS_ALLOW_CREDENTIALS = True
