@@ -168,15 +168,11 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-# --- CORS & CSRF CONFIGURATION ---
+# --- CORS CONFIGURATION ---
 # Allow requests from your React development server
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "https://ai-curiosity-engine.onrender.com",
-]
+CORS_ALLOWED_ALL_ORIGINS = True
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://ai-curiosity-engine.onrender.com",
-]
 # If you want to send credentials like authorization headers/cookies
 CORS_ALLOW_CREDENTIALS = True
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
