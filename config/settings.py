@@ -28,11 +28,7 @@ SECRET_KEY = 'django-insecure-w)k8^5sfeoad=6-x#(cs=9^13s7m5a3_x)&910nhkgdo%hg*^c
 DEBUG = False
 
 # Explicitly allow your Render URL and localhost
-ALLOWED_HOSTS = [
-    'ai-curiosity-engine.onrender.com',
-    'localhost',
-    '127.0.0.1',
-]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -142,8 +138,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# Static files (CSS, JavaScript, Images)
+
+STATIC_URL = "static/"
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# WhiteNoise static file compression for production
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
