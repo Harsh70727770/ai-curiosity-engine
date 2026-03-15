@@ -1,52 +1,41 @@
 import logging
-from sentence_transformers import SentenceTransformer
+import os
+import requests
 
 logger = logging.getLogger(__name__)
 
-# Lazy loaded model
-_model = None
+API_URL = "https://api-inference.huggingface.co/models/sentence-transformers/all-MiniLM-L6-v2"
 
+HF_API_TOKEN = os.environ.get("HF_API_TOKEN")
 
-def get_model():
-    global _model
-    if _model is None:
-        try:
-            logger.info("Loading SentenceTransformer model...")
-            _model = SentenceTransformer("all-MiniLM-L6-v2")
-            logger.info("Model loaded successfully.")
-        except Exception as e:
-            logger.error(f"Failed to load NLP model: {e}")
-            raise e
-    return _model
+headers = {
+    "Authorization": f"Bearer {HF_API_TOKEN}"
+}
 
 
 class ConceptExtractor:
     """
-    Uses SentenceTransformer embeddings to extract semantic
-    representations of study text.
+    Uses HuggingFace Inference API to generate embeddings
+    instead of loading heavy local models.
     """
 
     def extract_topics(self, text):
-        """
-        Converts text into semantic embeddings.
-
-        Args:
-            text (str): Input study text
-
-        Returns:
-            list: Vector embeddings representing the text
-        """
 
         if not text or len(text.strip()) < 5:
             return []
 
         try:
-            # Step 5: Use lazy-loaded model
-            model = get_model()
-            embeddings = model.encode(text)
+            response = requests.post(
+                API_URL,
+                headers=headers,
+                json={"inputs": text}
+            )
 
-            logger.info("Text embeddings generated successfully.")
-            return embeddings.tolist()
+            embeddings = response.json()
+
+            logger.info("Embeddings generated via HuggingFace API")
+
+            return embeddings
 
         except Exception as e:
             logger.error(f"Embedding generation failed: {e}")
