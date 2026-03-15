@@ -99,10 +99,11 @@ DATABASES = {
 
 # Neo4j Graph Database Configuration
 # Replace these with your actual local or Neo4j AuraDB credentials
-NEO4J_URI = 'neo4j+s://3e065f37.databases.neo4j.io' # Use "neo4j+s://" if using cloud AuraDB
-NEO4J_USER = "neo4j"
-NEO4J_PASSWORD = 'lB5H8wN0qXXb1tiA-C6-y-sjYIL1KQZGGTWlrFOpthg'
+# Neo4j Graph Database Configuration
 
+NEO4J_URI = os.environ.get("NEO4J_URI")
+NEO4J_USER = os.environ.get("NEO4J_USER")
+NEO4J_PASSWORD = os.environ.get("NEO4J_PASSWORD")
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
