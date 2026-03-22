@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 import os
 import dj_database_url
 from pathlib import Path
-from corsheaders.defaults import default_headers
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -159,10 +158,6 @@ CORS_ALLOWED_ORIGINS = [
     "https://ai-curiosity-engine.vercel.app/",
 ]
 
-CORS_ALLOW_HEADERS = list(default_headers) + [
-    'authorization',
-]
-
 # --- REST FRAMEWORK & JWT SETTINGS ---
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -186,5 +181,14 @@ CORS_ALLOWED_ALL_ORIGINS = True
 
 # If you want to send credentials like authorization headers/cookies
 CORS_ALLOW_CREDENTIALS = True
+
+from corsheaders.defaults import default_headers
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'authorization',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://ai-curiosity-engine.vercel.app",
+]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
