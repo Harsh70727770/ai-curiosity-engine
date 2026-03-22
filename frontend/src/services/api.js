@@ -1,25 +1,25 @@
 import axios from 'axios';
 
-// Create a custom axios instance
+// 🔥 Use environment variable instead of hardcoded URL
+const API = import.meta.env.VITE_API_URL;
+
+// Create axios instance
 const api = axios.create({
-    baseURL: 'https://ai-curiosity-engine.onrender.com/api/',
+    baseURL: `${API}/api/`,
 });
 
-// Intercept every outgoing request and attach the token
+// 🔐 Attach token automatically
 api.interceptors.request.use(
     (config) => {
-        // Grab the token from local storage
         const token = localStorage.getItem('access_token');
-        
-        // If the token exists, attach it to the Authorization header
+
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
+
         return config;
     },
-    (error) => {
-        return Promise.reject(error);
-    }
+    (error) => Promise.reject(error)
 );
 
 export default api;

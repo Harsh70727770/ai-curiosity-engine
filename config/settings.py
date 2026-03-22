@@ -154,7 +154,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 AUTH_USER_MODEL = 'users.CustomUser'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
+    "https://ai-curiosity-engine.vercel.app/",
 ]
 
 # --- REST FRAMEWORK & JWT SETTINGS ---
