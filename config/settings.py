@@ -148,8 +148,6 @@ STATIC_URL = "/static/"
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STATICFILES_DIRS = []  # (optional, safe)
-
 # WhiteNoise static file compression for production
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
