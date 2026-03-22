@@ -1,1 +1,1 @@
-web: bash -c "python manage.py collectstatic --noinput && gunicorn config.wsgi:application"
+web: bash -c "python manage.py migrate && gunicorn config.wsgi:application"
