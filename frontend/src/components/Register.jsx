@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import api from '../services/api'; // ✅ changed from axios
 
 export default function Register({ navigateTo }) {
     const [name, setName] = useState('');
@@ -37,19 +37,17 @@ export default function Register({ navigateTo }) {
         setLoading(true);
 
         try {
-            // Send the new user data to Django
-            const response = await axios.post('https://ai-curiosity-engine.onrender.com/api/users/register/', {
+            // ✅ FIXED: using api instance + correct endpoint
+            const response = await api.post('users/register/', {
                 email: email,
                 password: password
             });
 
-            // If successful, alert them and send them to the login page
             alert("Account created successfully! Please log in.");
             navigateTo('login');
 
         } catch (err) {
             console.error(err);
-            // Check if Django sent back a specific error (like "Email already exists")
             if (err.response && err.response.data) {
                 setError(JSON.stringify(err.response.data));
             } else {
@@ -65,7 +63,6 @@ export default function Register({ navigateTo }) {
             <h2 className="section-title" style={{ borderBottom: 'none', marginBottom: '10px' }}>Create an Account</h2>
             <p style={{ color: '#64748b', marginBottom: '2rem' }}>Start mapping your cognitive knowledge graph.</p>
 
-            {/* Display error message if registration fails */}
             {error && <div style={{ color: '#ef4444', marginBottom: '15px', fontWeight: '500' }}>{error}</div>}
 
             <form onSubmit={handleRegister} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
