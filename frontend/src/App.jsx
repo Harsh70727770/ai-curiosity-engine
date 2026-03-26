@@ -141,7 +141,7 @@ function App() {
         {currentView === 'register' && <Register navigateTo={setCurrentView} />}
         {currentView === 'forgot-password' && <ForgotPassword navigateTo={setCurrentView} />}
         
-        {currentView === 'profile' && <Profile />} 
+        {currentView === 'profile' && <Profile navigateTo={setCurrentView} />} 
 
         {currentView === 'portal' && (
             <>
