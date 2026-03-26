@@ -15,7 +15,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
 
-  // ✅ FIXED HERE
+  // ✅ FIXED: login detection + auto redirect
   useEffect(() => {
     const token = localStorage.getItem('access_token');
     const name = localStorage.getItem('user_name');
@@ -26,6 +26,8 @@ function App() {
         name: name || "User",
         avatar: avatar || "https://i.pravatar.cc/40"
       });
+
+      setCurrentView('portal'); // 🔥 important fix
     }
   }, []);
 
@@ -85,10 +87,26 @@ function App() {
                   border: '1px solid #e2e8f0',
                   borderRadius: '8px',
                   boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-                  width: '150px',
+                  width: '170px',
                   zIndex: 1000
                 }}>
                   
+                  {/* ✅ Upload Profile Photo */}
+                  <div style={{ padding: '10px' }}>
+                    <input 
+                      type="file" 
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files[0];
+                        if (file) {
+                          const imageURL = URL.createObjectURL(file);
+                          localStorage.setItem('user_avatar', imageURL);
+                          window.location.reload();
+                        }
+                      }}
+                    />
+                  </div>
+
                   <div 
                     style={{ padding: '10px', cursor: 'pointer' }}
                     onClick={() => {
@@ -135,7 +153,9 @@ function App() {
             <>
                 <div style={{ marginBottom: '2rem' }}>
                     <h1 style={{ fontSize: '2.5rem', color: '#0f172a' }}>Welcome back.</h1>
-                    <p style={{ color: '#64748b', fontSize: '1.1rem' }}>Your cognitive knowledge graph is active and monitoring your learning progress.</p>
+                    <p style={{ color: '#64748b', fontSize: '1.1rem' }}>
+                      Your cognitive knowledge graph is active and monitoring your learning progress.
+                    </p>
                 </div>
 
                 <div className="app-card">

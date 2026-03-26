@@ -22,13 +22,16 @@ export default function Login({ navigateTo }) {
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
 
-            // ✅ ADD THIS (IMPORTANT FIX)
-            localStorage.setItem('user_name', email);
+            // ✅ FIX: show name instead of full email
+            localStorage.setItem('user_name', email.split('@')[0]);
+
+            // ✅ avatar default
             localStorage.setItem('user_avatar', 'https://i.pravatar.cc/40');
 
-            // ✅ FORCE REFRESH (VERY IMPORTANT)
-            window.location.reload();
+            // ❌ REMOVE THIS (causing redirect bug)
+            // window.location.reload();
 
+            // ✅ CORRECT NAVIGATION
             navigateTo('portal'); 
             
         } catch (err) {
