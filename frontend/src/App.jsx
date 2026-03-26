@@ -8,6 +8,7 @@ import Contact from './components/Contact';
 import Login from './components/Login';
 import Register from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
+import Profile from './components/Profile';
 
 function App() {
   const [currentView, setCurrentView] = useState('home');
@@ -15,7 +16,6 @@ function App() {
   const [user, setUser] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
 
-  // ✅ FIXED: login detection + auto redirect
   useEffect(() => {
     const token = localStorage.getItem('access_token');
     const name = localStorage.getItem('user_name');
@@ -27,7 +27,7 @@ function App() {
         avatar: avatar || "https://i.pravatar.cc/40"
       });
 
-      setCurrentView('portal'); // 🔥 important fix
+      setCurrentView('portal');
     }
   }, []);
 
@@ -87,34 +87,26 @@ function App() {
                   border: '1px solid #e2e8f0',
                   borderRadius: '8px',
                   boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-                  width: '170px',
+                  width: '150px',
                   zIndex: 1000
                 }}>
                   
-                  {/* ✅ Upload Profile Photo */}
-                  <div style={{ padding: '10px' }}>
-                    <input 
-                      type="file" 
-                      accept="image/*"
-                      onChange={(e) => {
-                        const file = e.target.files[0];
-                        if (file) {
-                          const imageURL = URL.createObjectURL(file);
-                          localStorage.setItem('user_avatar', imageURL);
-                          window.location.reload();
-                        }
-                      }}
-                    />
-                  </div>
-
+                  {/* ✅ UPDATED ONLY THIS PART */}
                   <div 
-                    style={{ padding: '10px', cursor: 'pointer' }}
+                    style={{ 
+                      padding: '10px', 
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px'
+                    }}
                     onClick={() => {
                       setCurrentView('profile');
                       setShowMenu(false);
                     }}
                   >
-                    ✏️ Update Profile
+                    <span>✏️</span>
+                    <span>Update Profile</span>
                   </div>
 
                   <div 
@@ -148,6 +140,8 @@ function App() {
         {currentView === 'login' && <Login navigateTo={setCurrentView} />}
         {currentView === 'register' && <Register navigateTo={setCurrentView} />}
         {currentView === 'forgot-password' && <ForgotPassword navigateTo={setCurrentView} />}
+        
+        {currentView === 'profile' && <Profile />} 
 
         {currentView === 'portal' && (
             <>
