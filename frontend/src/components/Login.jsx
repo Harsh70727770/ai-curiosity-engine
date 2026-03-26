@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import api from '../services/api'; // ✅ FIXED
+import api from '../services/api';
 
 export default function Login({ navigateTo }) {
     const [email, setEmail] = useState('');
@@ -13,14 +13,21 @@ export default function Login({ navigateTo }) {
         setError('');
 
         try {
-            // ✅ FIXED (Railway backend use hoga now)
             const response = await api.post('users/login/', {
                 username: email,
                 password: password
             });
 
+            // ✅ EXISTING
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
+
+            // ✅ ADD THIS (IMPORTANT FIX)
+            localStorage.setItem('user_name', email);
+            localStorage.setItem('user_avatar', 'https://i.pravatar.cc/40');
+
+            // ✅ FORCE REFRESH (VERY IMPORTANT)
+            window.location.reload();
 
             navigateTo('portal'); 
             
@@ -67,7 +74,7 @@ export default function Login({ navigateTo }) {
 
                 <button 
                     type="submit" 
-                    disabled={loading} 
+                    disabled={loading}
                     style={{
                         padding: '12px',
                         backgroundColor: '#0f172a',

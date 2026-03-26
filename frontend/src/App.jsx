@@ -12,24 +12,23 @@ import ForgotPassword from './components/ForgotPassword';
 function App() {
   const [currentView, setCurrentView] = useState('home');
 
-  // ✅ user state
   const [user, setUser] = useState(null);
-
-  // ✅ dropdown state
   const [showMenu, setShowMenu] = useState(false);
 
-  // ✅ check login
+  // ✅ FIXED HERE
   useEffect(() => {
     const token = localStorage.getItem('access_token');
     const name = localStorage.getItem('user_name');
     const avatar = localStorage.getItem('user_avatar');
 
-    if (token && name) {
-      setUser({ name, avatar });
+    if (token) {
+      setUser({
+        name: name || "User",
+        avatar: avatar || "https://i.pravatar.cc/40"
+      });
     }
   }, []);
 
-  // ✅ logout function
   const handleLogout = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
@@ -43,7 +42,6 @@ function App() {
   return (
     <div className="app-wrapper">
       
-      {/* Navigation Bar */}
       <nav className="navbar">
         <div className="navbar-brand">
           🧠 AI Curiosity Engine
@@ -54,7 +52,6 @@ function App() {
           <span onClick={() => setCurrentView('about')} style={{ color: currentView === 'about' ? '#38bdf8' : '' }}>About</span>
           <span onClick={() => setCurrentView('contact')} style={{ color: currentView === 'contact' ? '#38bdf8' : '' }}>Contact</span>
 
-          {/* ✅ UPDATED USER SECTION */}
           {user ? (
             <div style={{ position: 'relative' }}>
               
@@ -79,7 +76,6 @@ function App() {
                 </span>
               </div>
 
-              {/* 🔽 DROPDOWN */}
               {showMenu && (
                 <div style={{
                   position: 'absolute',
@@ -125,7 +121,6 @@ function App() {
         </div>
       </nav>
 
-      {/* Main Content Area */}
       <main className="main-container">
         
         {currentView === 'home' && <Home navigateTo={setCurrentView} />}
