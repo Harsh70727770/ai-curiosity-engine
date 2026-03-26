@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import axios from 'axios';
+import api from '../services/api'; // ✅ FIXED
 
 export default function Login({ navigateTo }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState(''); // To show wrong password messages
+    const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
     const handleLogin = async (e) => {
@@ -13,19 +13,15 @@ export default function Login({ navigateTo }) {
         setError('');
 
         try {
-            // Send the request to Django's SimpleJWT endpoint
-            // Note: SimpleJWT expects the field to be called "username" by default
-            const response = await axios.post('https://ai-curiosity-engine.onrender.com/api/users/login/', {
-                username: email, 
+            // ✅ FIXED (Railway backend use hoga now)
+            const response = await api.post('users/login/', {
+                username: email,
                 password: password
             });
 
-            // If successful, Django gives us an access token and a refresh token
-            // We save them to the browser's local storage
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
 
-            // Send the user to their dashboard!
             navigateTo('portal'); 
             
         } catch (err) {
@@ -41,7 +37,6 @@ export default function Login({ navigateTo }) {
             <h2 className="section-title" style={{ borderBottom: 'none', marginBottom: '10px' }}>Welcome Back</h2>
             <p style={{ color: '#64748b', marginBottom: '2rem' }}>Sign in to access your cognitive analytics.</p>
 
-            {/* Display error message if login fails */}
             {error && <div style={{ color: '#ef4444', marginBottom: '15px', fontWeight: '500' }}>{error}</div>}
 
             <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
@@ -70,7 +65,21 @@ export default function Login({ navigateTo }) {
                     </span>
                 </div>
 
-                <button type="submit" disabled={loading} style={{ padding: '12px', backgroundColor: '#0f172a', color: 'white', border: 'none', borderRadius: '6px', fontSize: '1.1rem', cursor: loading ? 'not-allowed' : 'pointer', fontWeight: 'bold', marginTop: '10px' }}>
+                <button 
+                    type="submit" 
+                    disabled={loading} 
+                    style={{
+                        padding: '12px',
+                        backgroundColor: '#0f172a',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '6px',
+                        fontSize: '1.1rem',
+                        cursor: loading ? 'not-allowed' : 'pointer',
+                        fontWeight: 'bold',
+                        marginTop: '10px'
+                    }}
+                >
                     {loading ? 'Authenticating...' : 'Log In'}
                 </button>
             </form>

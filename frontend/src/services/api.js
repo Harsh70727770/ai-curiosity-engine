@@ -3,6 +3,11 @@ import axios from "axios";
 // 🔥 Backend base URL (from Vercel env)
 const API = import.meta.env.VITE_API_URL;
 
+// ❗ Safety check (helps debugging)
+if (!API) {
+  console.error("❌ VITE_API_URL is not defined");
+}
+
 // ✅ Create axios instance
 const api = axios.create({
   baseURL: `${API}/api/`,
@@ -25,10 +30,10 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// ❗ REGISTER API (FIXED ENDPOINT)
+// ❗ REGISTER API (NO CHANGE NEEDED — already correct)
 export const registerUser = async (data) => {
   try {
-    const response = await api.post("users/register/", data); // ✅ FIXED
+    const response = await api.post("users/register/", data);
     return response.data;
   } catch (error) {
     console.error("Register Error:", error.response?.data || error.message);
@@ -36,10 +41,14 @@ export const registerUser = async (data) => {
   }
 };
 
-// ❗ LOGIN API
+// ❗ LOGIN API (🔥 IMPORTANT FIX)
 export const loginUser = async (data) => {
   try {
-    const response = await api.post("users/login/", data);
+    const response = await api.post("users/login/", {
+      username: data.email,   // 🔥 FIX: email → username
+      password: data.password
+    });
+
     return response.data;
   } catch (error) {
     console.error("Login Error:", error.response?.data || error.message);
