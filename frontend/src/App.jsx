@@ -91,7 +91,6 @@ function App() {
                   zIndex: 1000
                 }}>
                   
-                  {/* ✅ UPDATED ONLY THIS PART */}
                   <div 
                     style={{ 
                       padding: '10px', 
@@ -131,7 +130,8 @@ function App() {
         </div>
       </nav>
 
-      <main className="main-container">
+      {/* ✅ ONLY CHANGE HERE */}
+      <main className={currentView === 'home' ? '' : 'main-container'}>
         
         {currentView === 'home' && <Home navigateTo={setCurrentView} />}
         {currentView === 'about' && <About />}
