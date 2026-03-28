@@ -1,22 +1,24 @@
-import bgImage from "../images/curosity_engine.png"; // ✅ correct path
+import bgImage from "../images/curosity_engine.png";
 
 export default function Home({ navigateTo }) {
     return (
         <div 
-            className="relative w-full min-h-[600px] h-[80vh] max-h-[900px] max-w-7xl mx-auto overflow-hidden rounded-3xl shadow-2xl border border-slate-800 flex flex-col items-center justify-end"
+            className="relative w-full h-screen overflow-hidden flex flex-col items-center justify-end"
             style={{ 
                 backgroundImage: `url(${bgImage})`,
                 backgroundSize: 'cover',
-                backgroundPosition: 'center top',
-                backgroundRepeat: 'no-repeat',
-                backgroundColor: '#0f172a'
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
             }}
         >
-            {/* Gradient overlay */}
-            <div className="absolute bottom-0 left-0 w-full h-3/5 bg-gradient-to-t from-[#050b14] via-[#0f172a]/80 to-transparent pointer-events-none z-0"></div>
+            {/* Dark overlay for readability */}
+            <div className="absolute inset-0 bg-black/40 z-0"></div>
+
+            {/* Bottom gradient */}
+            <div className="absolute bottom-0 left-0 w-full h-2/3 bg-gradient-to-t from-black via-black/60 to-transparent z-0"></div>
 
             {/* Content */}
-            <div className="relative z-10 flex flex-col items-center text-center p-6 md:p-12 mb-4 md:mb-8 w-full max-w-3xl mx-auto">
+            <div className="relative z-10 flex flex-col items-center text-center p-6 md:p-12 mb-12 w-full max-w-3xl mx-auto">
                 
                 {/* Badge */}
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/80 border border-slate-700 text-cyan-400 text-sm font-semibold mb-6 shadow-lg backdrop-blur-md">
@@ -28,7 +30,7 @@ export default function Home({ navigateTo }) {
                 </div>
                 
                 {/* Text */}
-                <p className="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed drop-shadow-lg font-medium">
+                <p className="text-lg md:text-xl text-white mb-8 leading-relaxed drop-shadow-lg font-medium">
                     A cognitive modeling platform designed to convert abstract learning goals into highly personalized, actionable learning paths.
                 </p>
 
@@ -37,9 +39,8 @@ export default function Home({ navigateTo }) {
                     onClick={() => navigateTo('login')}
                     className="group relative px-8 py-4 font-bold text-white rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 overflow-hidden shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.7)] transition-all duration-300 transform hover:-translate-y-1"
                 >
-                    {/* Shine Effect */}
                     <div className="absolute inset-0 w-full h-full bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
-                    
+
                     <span className="relative z-10 flex items-center justify-center gap-2 text-lg">
                         Enter Student Portal
                         <svg 
