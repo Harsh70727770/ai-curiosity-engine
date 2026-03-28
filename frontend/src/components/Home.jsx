@@ -3,7 +3,7 @@ import bg from "../images/curosity_engine.png";
 export default function Home({ navigateTo }) {
     return (
         <div 
-            className="relative w-full min-h-screen overflow-hidden flex flex-col items-center justify-center"
+            className="relative w-full h-full overflow-hidden flex flex-col items-center justify-center"
             style={{ 
                 backgroundImage: `url(${bg})`,
                 backgroundSize: 'cover',

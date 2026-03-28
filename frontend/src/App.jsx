@@ -131,7 +131,7 @@ function App() {
       </nav>
 
       {/* ✅ ONLY CHANGE HERE */}
-      <main className={currentView === 'home' ? '' : 'main-container'}>
+      <main className={currentView === 'home' ? 'home-main' : 'main-container'}>
         
         {currentView === 'home' && <Home navigateTo={setCurrentView} />}
         {currentView === 'about' && <About />}
