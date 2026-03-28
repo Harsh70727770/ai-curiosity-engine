@@ -165,6 +165,21 @@ body {
   }
 }
 
+/* Make navbar float over image */
+.navbar {
+  position: fixed;   /* 🔥 changed from sticky */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Prevent content going under navbar */
+body {
+  margin-top: 70px; /* adjust if navbar height changes */
+}
+
+/* Ensure wrapper fills screen */
 .app-wrapper {
   display: flex;
   flex-direction: column;
