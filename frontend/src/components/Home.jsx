@@ -3,7 +3,7 @@ import bgImage from "../images/curosity_engine.png";
 export default function Home({ navigateTo }) {
     return (
         <div 
-            className="relative w-full h-screen overflow-hidden flex flex-col items-center justify-end"
+            className="relative w-full h-[calc(100vh-70px)] overflow-hidden flex items-center"
             style={{ 
                 backgroundImage: `url(${bgImage})`,
                 backgroundSize: 'cover',
@@ -11,53 +11,49 @@ export default function Home({ navigateTo }) {
                 backgroundRepeat: 'no-repeat'
             }}
         >
-            {/* Dark overlay for readability */}
-            <div className="absolute inset-0 bg-black/40 z-0"></div>
+            {/* Dark overlay */}
+            <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"></div>
 
-            {/* Bottom gradient */}
-            <div className="absolute bottom-0 left-0 w-full h-2/3 bg-gradient-to-t from-black via-black/60 to-transparent z-0"></div>
+            {/* Gradient glow */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
 
-            {/* Content */}
-            <div className="relative z-10 flex flex-col items-center text-center p-6 md:p-12 mb-12 w-full max-w-3xl mx-auto">
+            {/* Content LEFT aligned (premium look) */}
+            <div className="relative z-10 max-w-6xl mx-auto w-full px-6 md:px-12">
                 
-                {/* Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/80 border border-slate-700 text-cyan-400 text-sm font-semibold mb-6 shadow-lg backdrop-blur-md">
-                    <span className="relative flex h-2.5 w-2.5">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
-                    </span>
-                    Next-Gen Cognitive Platform
+                <div className="max-w-2xl">
+                    
+                    {/* Badge */}
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-cyan-300 text-sm font-semibold mb-6 backdrop-blur-md shadow-lg">
+                        <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                        Next-Gen Cognitive Platform
+                    </div>
+
+                    {/* Heading (NEW 🔥) */}
+                    <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
+                        Transform Your Learning <br />
+                        <span className="text-cyan-400">With AI Intelligence</span>
+                    </h1>
+
+                    {/* Description */}
+                    <p className="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed">
+                        A cognitive modeling platform designed to convert abstract learning goals into highly personalized, actionable learning paths.
+                    </p>
+
+                    {/* Button */}
+                    <button 
+                        onClick={() => navigateTo('login')}
+                        className="group relative px-8 py-4 font-semibold text-white rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 overflow-hidden shadow-[0_0_25px_rgba(6,182,212,0.5)] hover:shadow-[0_0_40px_rgba(6,182,212,0.8)] transition-all duration-300 transform hover:-translate-y-1"
+                    >
+                        <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+
+                        <span className="relative z-10 flex items-center gap-2 text-lg">
+                            Enter Student Portal
+                            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                            </svg>
+                        </span>
+                    </button>
                 </div>
-                
-                {/* Text */}
-                <p className="text-lg md:text-xl text-white mb-8 leading-relaxed drop-shadow-lg font-medium">
-                    A cognitive modeling platform designed to convert abstract learning goals into highly personalized, actionable learning paths.
-                </p>
-
-                {/* Button */}
-                <button 
-                    onClick={() => navigateTo('login')}
-                    className="group relative px-8 py-4 font-bold text-white rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 overflow-hidden shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.7)] transition-all duration-300 transform hover:-translate-y-1"
-                >
-                    <div className="absolute inset-0 w-full h-full bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
-
-                    <span className="relative z-10 flex items-center justify-center gap-2 text-lg">
-                        Enter Student Portal
-                        <svg 
-                            className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
-                            fill="none" 
-                            stroke="currentColor" 
-                            viewBox="0 0 24 24"
-                        >
-                            <path 
-                                strokeLinecap="round" 
-                                strokeLinejoin="round" 
-                                strokeWidth="2" 
-                                d="M13 7l5 5m0 0l-5 5m5-5H6"
-                            />
-                        </svg>
-                    </span>
-                </button>
             </div>
         </div>
     );
