@@ -1,21 +1,23 @@
+import aiImage from '../images/curosity_engine.png';
+
 export default function Home({ navigateTo }) {
     return (
         <div className="flex flex-col md:flex-row w-full min-h-screen overflow-hidden bg-slate-950">
             
             {/* Left Section (Image Side) */}
-            <div className="relative w-full md:w-1/2 h-[40vh] md:h-screen flex-shrink-0">
+            <div className="relative w-full md:w-1/2 h-[50vh] md:h-screen flex-shrink-0">
                 {/* Dark overlay for aesthetics */}
                 <div className="absolute inset-0 bg-black/40 z-10"></div>
                 
                 <img 
-                    src="../images/curosity_engine.png" 
+                    src={aiImage} 
                     alt="AI Curiosity Engine Background" 
                     className="absolute inset-0 w-full h-full object-cover"
                 />
             </div>
 
             {/* Right Section (Content Side) */}
-            <div className="relative w-full md:w-1/2 min-h-[60vh] md:h-screen flex flex-col justify-center items-center p-8 md:p-12 lg:p-16 bg-gradient-to-br from-slate-900 via-[#0f172a] to-slate-950">
+            <div className="relative w-full md:w-1/2 min-h-[50vh] md:h-screen flex flex-col justify-center items-center p-8 md:p-12 lg:p-16 bg-gradient-to-br from-slate-900 via-[#0f172a] to-slate-950">
                 
                 {/* Ambient glow effects */}
                 <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none"></div>
