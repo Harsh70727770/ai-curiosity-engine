@@ -131,7 +131,7 @@ function App() {
       </nav>
 
       {/* ✅ FIXED MAIN SECTION */}
-      <main className={`${currentView === 'home' ? 'w-screen h-screen overflow-hidden' : 'main-container'}`}>
+      <main className={currentView === 'home' ? 'home-main' : 'main-container'}>
         
         {currentView === 'home' && <Home navigateTo={setCurrentView} />}
         {currentView === 'about' && <About />}
