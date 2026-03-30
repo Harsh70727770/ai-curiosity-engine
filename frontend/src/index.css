@@ -1,3 +1,9 @@
+/* ===== TAILWIND ===== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 /* ===== RESET ===== */
 * {
   margin: 0;
@@ -15,6 +21,16 @@
   --muted: #94a3b8;
 }
 
+/* ===== GLOBAL FIX (VERY IMPORTANT 🔥) ===== */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Fix horizontal scroll issue */
+  background-color: #020617; /* Prevent white flash */
+}
+
 /* ===== BODY ===== */
 body {
   font-family: 'Inter', sans-serif;
@@ -25,9 +41,9 @@ body {
 
 /* ===== ROOT CONTAINER ===== */
 #root {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 /* ===== HEADINGS ===== */

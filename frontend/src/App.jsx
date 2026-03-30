@@ -130,8 +130,8 @@ function App() {
         </div>
       </nav>
 
-      {/* ✅ ONLY CHANGE HERE */}
-      <main className={currentView === 'home' ? 'home-main' : 'main-container'}>
+      {/* ✅ FIXED MAIN SECTION */}
+      <main className={`w-full ${currentView === 'home' ? 'h-screen overflow-hidden' : 'main-container'}`}>
         
         {currentView === 'home' && <Home navigateTo={setCurrentView} />}
         {currentView === 'about' && <About />}
