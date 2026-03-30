@@ -112,11 +112,11 @@ input:focus, textarea:focus {
 }
 
 /* ===== CONTAINER ===== */
-.container {
+/* .container {
   width: 90%;
   max-width: 1200px;
   margin: auto;
-}
+} */
 
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar {

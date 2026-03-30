@@ -14,6 +14,12 @@
   text-align: left;
 }
 
+/* ✅ ADD THIS (IMPORTANT) */
+html, body {
+  height: 100%;
+}
+
+/* Body */
 body {
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f4f7f9;
@@ -31,7 +37,7 @@ body {
   align-items: center;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 
-  position: sticky;   /* ✅ FIXED */
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -105,12 +111,20 @@ body {
 
 /* Wrapper */
 .app-wrapper {
+  width: 100%;
+  max-width: 100%;
+  
+  /* ✅ ADD THIS */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
 
+
+/* ✅ NEW FIXED VERSION */
 .home-main {
-  flex: 1;
+  height: calc(100vh - 72px); /* navbar height adjust */
+  width: 100%;
   display: flex;
+  overflow: hidden;
 }

@@ -2,7 +2,7 @@ import aiImage from '../images/curosity_engine.png';
 
 export default function Home({ navigateTo }) {
     return (
-        <div className="flex flex-col md:flex-row w-full h-screen overflow-hidden bg-slate-950">
+        <div className="flex w-screen h-screen overflow-hidden bg-slate-950">
             
             {/* Left Section (Image Side) */}
             <div className="relative w-full md:basis-1/2 h-[50vh] md:h-full flex-shrink-0">
